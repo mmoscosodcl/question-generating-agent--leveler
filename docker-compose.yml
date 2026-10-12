@@ -1,0 +1,14 @@
+services:
+  assessment-crew:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: assessment_crew_runner
+    volumes:
+      - ./output:/app/output
+      - ./.env:/app/.env:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - OUTPUT_DIR=/app/output
+    command: ["--topic", "Relational Database Normalization", "--program", "Computer Science", "--count", "3"]
